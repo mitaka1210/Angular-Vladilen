@@ -1,3 +1,31 @@
 <div class="card">
-  <p>Card Component test</p>
+  <h2 [ngStyle]="{'color': title.length < 5 ? 'red' : 'green'}">{{title}}</h2>
+
+  <div class="buttons">
+    <button (click)="textColor = 'red'">Set blue</button>
+    <button (click)="textColor = 'blue'">Set red</button>
+    <button (click)="textColor = 'orange'">Set orange</button>
+  </div>
+  <p class="text" [ngClass]="{
+    red: textColor === 'red',
+    blue: textColor === 'blue',
+    orange: textColor === 'orange'
+}">{{text}}</p>
+  <p>{{getInfo()}}</p>
+
+  <div>
+    <!--!without bind tag-->
+    <img style='margin: 1rem;' src="{{imgUrl}}" alt="">
+    <!--!bind tag src-->
+    <img style='margin: 1rem;' [src]="imgUrl" alt="">
+
+
+  </div>
+
+
+
+  <div class="buttons"><button (click)="changeTitle()">Change title</button></div>
+  <div><button (click)="title = 'Inline Title'">Change title</button></div>
+  <!--<div><input type="text" #myInput (input)="inputHandler(myInput.value)" [placeholder]="title"></div>-->
+  <div><input type="text" [(ngModel)]="title" (ngModelChange)="changeHandler()"></div>
 </div>
